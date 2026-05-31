@@ -230,7 +230,7 @@
 
   var DEFAULT = {
     income:"", currency:"GBP", savePct:20,
-    bills:[ {id:1,name:"Rent / housing",amount:""}, {id:2,name:"Phone",amount:""} ],
+    bills:[ {id:1,name:"Rent / housing",amount:""}, {id:2,name:"Phone",amount:""}, {id:3,name:"LISA",amount:"20"} ],
     jars:[ {id:1,name:"Groceries",amount:""}, {id:2,name:"Transport",amount:""}, {id:3,name:"Fun money",amount:""} ]
   };
 
@@ -455,6 +455,14 @@
       renderBills(); renderJars(); refreshSigns(); recompute(); save();
     }
   });
+
+  // ---- one-time migration: ensure LISA line exists for already-saved data ----
+  if(!state._mig_lisa){
+    var hasLisa = state.bills.some(function(b){ return (b.name||"").trim().toUpperCase()==="LISA"; });
+    if(!hasLisa){ state.bills.push({id:newId(),name:"LISA",amount:"20"}); }
+    state._mig_lisa = true;
+    save();
+  }
 
   // ---- initial paint ----
   renderBills(); renderJars(); refreshSigns(); recompute();
