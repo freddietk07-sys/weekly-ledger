@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#221c14" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content="Weekly Ledger" />
 <title>The Weekly Ledger</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,84 +14,64 @@
   :root{
     --paper:#f0e7d6; --paperDark:#e7dcc6; --card:#faf5ea;
     --ink:#221c14; --inkSoft:#5c5142; --line:#d8cab0;
-    --bills:#b5563a; --savings:#456b4f; --spend:#c08a2d; --unalloc:#a89a82;
+    --bills:#b5563a; --outgoings:#8a6d4a; --savings:#456b4f; --spend:#c08a2d; --unalloc:#a89a82;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   html,body{margin:0;padding:0;}
-  body{
-    background:var(--paper); color:var(--ink);
-    font-family:'Fraunces',Georgia,serif;
-    min-height:100vh;
-    padding-top:env(safe-area-inset-top);
-  }
+  body{background:var(--paper);color:var(--ink);font-family:'Fraunces',Georgia,serif;min-height:100vh;padding-top:env(safe-area-inset-top);}
   .mono{font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;}
   .wrap{max-width:960px;margin:0 auto;padding:26px 16px 90px;}
-  header{
-    display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;
-    border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:24px;
-  }
+  header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:24px;}
   .eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--inkSoft);}
   h1{font-size:38px;font-weight:600;margin:2px 0 0;line-height:1;}
   h2{font-size:19px;font-weight:600;margin:0;}
   .controls{display:flex;gap:8px;align-items:center;}
-  select,.btn{
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink);
-    background:var(--card);border:1.5px solid var(--line);border-radius:8px;
-    padding:8px 11px;cursor:pointer;
-  }
+  select,.btn{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:8px;padding:8px 11px;cursor:pointer;}
   .btn{display:inline-flex;align-items:center;gap:6px;transition:transform .12s ease;}
   .btn:hover{transform:translateY(-1px);}
   .btn:active{transform:translateY(0);}
   .btn-reset{background:transparent;color:var(--inkSoft);}
-  .card{
-    background:var(--card);border:1.5px solid var(--line);border-radius:14px;
-    padding:20px 20px;margin-bottom:18px;box-shadow:0 1px 2px rgba(0,0,0,.03);
-    animation:rise .45s ease both;
-  }
+  .card{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:20px 20px;margin-bottom:18px;box-shadow:0 1px 2px rgba(0,0,0,.03);animation:rise .45s ease both;}
   @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
   .seclabel{display:flex;align-items:center;gap:9px;}
-  .step{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--card);
-    background:var(--ink);border-radius:6px;padding:3px 6px;}
+  .step{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--card);background:var(--ink);border-radius:6px;padding:3px 6px;}
   .row-between{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
-  .income-row{display:flex;align-items:baseline;gap:10px;margin-top:8px;}
+  .toggle{display:inline-flex;background:var(--paperDark);border-radius:9px;padding:3px;gap:3px;margin-top:6px;}
+  .toggle button{font-family:'JetBrains Mono',monospace;font-size:12px;border:none;background:transparent;color:var(--inkSoft);padding:7px 14px;border-radius:7px;cursor:pointer;font-weight:500;}
+  .toggle button.active{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12);}
+  .income-row{display:flex;align-items:baseline;gap:10px;margin-top:14px;}
   .cursign{font-size:36px;color:var(--inkSoft);}
-  #income{
-    flex:1;min-width:0;font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:600;
-    border:none;border-bottom:2px solid var(--line);background:transparent;color:var(--ink);
-    padding:0 0 4px;
-  }
+  #income{flex:1;min-width:0;font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:600;border:none;border-bottom:2px solid var(--line);background:transparent;color:var(--ink);padding:0 0 4px;}
   #income:focus{outline:none;border-color:var(--ink);}
   .hint{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--inkSoft);}
+  .equiv{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--savings);margin-top:10px;font-weight:500;}
   .list{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
   .item{display:flex;align-items:center;gap:8px;background:var(--paperDark);border-radius:9px;padding:8px 10px;}
   .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
   .item .name{flex:1;min-width:0;border:none;background:transparent;font-family:'Fraunces',serif;font-size:15px;color:var(--ink);}
   .item .name:focus{outline:none;}
   .item .sign{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--inkSoft);}
-  .item .amt{width:84px;border:1px solid var(--line);border-radius:6px;background:var(--card);
-    font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;text-align:right;padding:5px 8px;color:var(--ink);}
+  .item .amt{width:84px;border:1px solid var(--line);border-radius:6px;background:var(--card);font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;text-align:right;padding:5px 8px;color:var(--ink);}
   .item .amt:focus{outline:none;border-color:var(--ink);}
   .x{background:none;border:none;display:flex;padding:3px;color:var(--ink);opacity:.4;cursor:pointer;transition:opacity .12s;}
   .x:hover{opacity:1;}
-  .add{margin-top:10px;width:100%;justify-content:center;background:transparent;border:1.5px dashed var(--line);
-    color:var(--inkSoft);border-radius:9px;padding:9px 14px;font-weight:500;}
+  .add{margin-top:10px;width:100%;justify-content:center;background:transparent;border:1.5px dashed var(--line);color:var(--inkSoft);border-radius:9px;padding:9px 14px;font-weight:500;}
+  .footer-stats{margin-top:16px;padding-top:14px;border-top:1.5px dashed var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+  .fstat .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--inkSoft);}
+  .fstat .val{font-size:22px;font-weight:600;}
   .total{text-align:right;}
   .total .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--inkSoft);}
   .total .val{font-size:22px;font-weight:600;}
-  .banner{border-radius:14px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;
-    flex-wrap:wrap;gap:8px;margin-bottom:18px;color:var(--paper);background:var(--ink);}
+  .banner{border-radius:14px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:18px;color:var(--paper);background:var(--ink);}
   .banner.over{background:#7d2f1e;}
   .banner .blbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;opacity:.72;}
   .banner .bval{font-size:30px;font-weight:600;line-height:1.1;}
-  .banner .calc{font-family:'JetBrains Mono',monospace;font-size:12px;text-align:right;opacity:.85;line-height:1.6;}
+  .banner .calc{font-family:'JetBrains Mono',monospace;font-size:11.5px;text-align:right;opacity:.85;line-height:1.7;}
   .slider-tops{display:flex;justify-content:space-between;margin-bottom:8px;}
   .slider-tops span{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;}
-  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--line);
-    border-radius:99px;outline:none;}
-  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;
-    border-radius:50%;background:var(--savings);border:3px solid var(--card);cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,.25);}
-  input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--savings);
-    border:3px solid var(--card);cursor:pointer;}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--line);border-radius:99px;outline:none;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;background:var(--savings);border:3px solid var(--card);cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,.25);}
+  input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--savings);border:3px solid var(--card);cursor:pointer;}
   .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
   .stat{background:var(--paperDark);border-radius:10px;padding:14px 16px;}
   .stat .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--inkSoft);}
@@ -106,15 +85,19 @@
   .donut{width:200px;height:200px;position:relative;margin:0 auto;}
   .donut .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;}
   .donut .center .cl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--inkSoft);}
-  .donut .center .cv{font-size:19px;font-weight:600;}
+  .donut .center .cv{font-size:18px;font-weight:600;}
   .legend{flex:1;min-width:200px;display:flex;flex-direction:column;gap:7px;}
   .leg{display:flex;align-items:center;gap:10px;}
   .leg .sw{width:11px;height:11px;border-radius:3px;flex-shrink:0;}
   .leg .ln{font-family:'JetBrains Mono',monospace;font-size:12.5px;flex:1;}
   .leg .lv{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--inkSoft);}
   .leg .lp{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--inkSoft);width:42px;text-align:right;}
+  table.sum{width:100%;border-collapse:collapse;margin-top:12px;}
+  table.sum th,table.sum td{font-family:'JetBrains Mono',monospace;font-size:13px;padding:9px 4px;text-align:right;border-bottom:1px solid var(--line);}
+  table.sum th:first-child,table.sum td:first-child{text-align:left;color:var(--inkSoft);font-weight:500;}
+  table.sum thead th{font-size:10px;letter-spacing:1px;color:var(--inkSoft);text-transform:uppercase;border-bottom:1.5px solid var(--ink);}
+  table.sum tr.emph td{font-weight:700;border-bottom:none;padding-top:12px;}
   .foot{text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--inkSoft);opacity:.7;margin-top:30px;}
-  .saved-flash{transition:opacity .4s;}
   @media(max-width:520px){ h1{font-size:32px;} .donut{width:170px;height:170px;} }
 </style>
 </head>
@@ -122,7 +105,7 @@
 <div class="wrap">
   <header>
     <div>
-      <div class="eyebrow">Personal Finance · Weekly</div>
+      <div class="eyebrow">Personal Finance · Monthly &amp; Weekly</div>
       <h1>The Weekly Ledger</h1>
     </div>
     <div class="controls">
@@ -138,35 +121,55 @@
   <!-- Income -->
   <section class="card">
     <div class="seclabel"><span class="step">01</span><h2>Money coming in</h2></div>
+    <div class="toggle" id="modeToggle">
+      <button id="modeMonthly">Paid monthly</button>
+      <button id="modeWeekly">Paid weekly</button>
+    </div>
     <div class="income-row">
       <span class="cursign" id="cursign">£</span>
       <input id="income" type="number" inputmode="decimal" placeholder="0.00" />
     </div>
-    <p class="hint" style="margin-top:8px;">YOUR TOTAL INCOME FOR THIS WEEK</p>
+    <p class="hint" id="incomeLbl" style="margin-top:8px;">YOUR MONTHLY TAKE-HOME PAY</p>
+    <p class="equiv" id="incomeEquiv"></p>
   </section>
 
-  <!-- Bills -->
+  <!-- Monthly bills -->
   <section class="card">
     <div class="row-between">
-      <div class="seclabel"><span class="step">02</span><h2>Bills &amp; direct debits</h2></div>
-      <div class="total"><div class="lbl">OWED</div><div class="val" id="billsTotal" style="color:var(--bills)">£0.00</div></div>
+      <div class="seclabel"><span class="step">02</span><h2>Monthly bills</h2></div>
     </div>
-    <div class="list" id="billsList"></div>
-    <button class="btn add" id="addBill">＋ Add a bill</button>
+    <p class="hint" style="margin:6px 0 0;">ENTER EACH AT ITS MONTHLY COST. A SLICE IS SET ASIDE EACH WEEK SO IT'S COVERED WHEN DUE.</p>
+    <div class="list" id="monthlyList"></div>
+    <button class="btn add" id="addMonthly">＋ Add a monthly bill</button>
+    <div class="footer-stats">
+      <div class="fstat"><div class="lbl">MONTHLY TOTAL</div><div class="val" id="monthlyTotal" style="color:var(--bills)">£0.00</div></div>
+      <div class="fstat" style="text-align:right"><div class="lbl">SET ASIDE WEEKLY (÷ 4.33)</div><div class="val" id="weeklySetAside" style="color:var(--bills)">£0.00</div></div>
+    </div>
   </section>
 
-  <!-- After bills banner -->
+  <!-- Weekly outgoings -->
+  <section class="card">
+    <div class="row-between">
+      <div class="seclabel"><span class="step">03</span><h2>Weekly outgoings</h2></div>
+      <div class="total"><div class="lbl">PER WEEK</div><div class="val" id="weeklyOutTotal" style="color:var(--outgoings)">£0.00</div></div>
+    </div>
+    <p class="hint" style="margin:6px 0 0;">THINGS YOU PAY WEEKLY — TRAVEL, A SET GROCERY BUDGET, LISA, ETC.</p>
+    <div class="list" id="weeklyList"></div>
+    <button class="btn add" id="addWeekly">＋ Add a weekly outgoing</button>
+  </section>
+
+  <!-- After commitments banner -->
   <div class="banner" id="banner">
     <div>
-      <div class="blbl" id="bannerLbl">LEFT AFTER BILLS</div>
-      <div class="bval" id="afterBills">£0.00</div>
+      <div class="blbl" id="afterLbl">LEFT EACH WEEK AFTER COMMITMENTS</div>
+      <div class="bval" id="afterVal">£0.00</div>
     </div>
-    <div class="calc" id="bannerCalc"></div>
+    <div class="calc" id="afterCalc"></div>
   </div>
 
   <!-- Save vs spend -->
   <section class="card">
-    <div class="seclabel"><span class="step">03</span><h2>Save vs. spend</h2></div>
+    <div class="seclabel"><span class="step">04</span><h2>Save vs. spend</h2></div>
     <p class="hint" style="margin:4px 0 18px;">SUGGESTED: PUT ASIDE ~20% OF WHAT'S LEFT. DRAG TO ADJUST.</p>
     <div class="slider-tops">
       <span id="saveLbl" style="color:var(--savings)">SAVE 20%</span>
@@ -174,12 +177,8 @@
     </div>
     <input type="range" id="savePct" min="0" max="100" step="5" value="20" />
     <div class="stats">
-      <div class="stat" style="border-left:4px solid var(--savings)">
-        <div class="lbl">TO SAVINGS</div><div class="val" id="savings" style="color:var(--savings)">£0.00</div>
-      </div>
-      <div class="stat" style="border-left:4px solid var(--spend)">
-        <div class="lbl">TO SPEND</div><div class="val" id="spendable" style="color:var(--spend)">£0.00</div>
-      </div>
+      <div class="stat" style="border-left:4px solid var(--savings)"><div class="lbl">TO SAVINGS / WK</div><div class="val" id="savings" style="color:var(--savings)">£0.00</div></div>
+      <div class="stat" style="border-left:4px solid var(--spend)"><div class="lbl">TO SPEND / WK</div><div class="val" id="spendable" style="color:var(--spend)">£0.00</div></div>
     </div>
     <p class="daily" id="daily"></p>
   </section>
@@ -187,7 +186,7 @@
   <!-- Jars -->
   <section class="card">
     <div class="row-between">
-      <div class="seclabel"><span class="step">04</span><h2>Separate into jars</h2></div>
+      <div class="seclabel"><span class="step">05</span><h2>Separate into jars</h2></div>
       <button class="btn btn-split" id="split">✦ Split evenly</button>
     </div>
     <p class="hint" id="jarHint" style="margin:4px 0 14px;">DIVIDE YOUR SPENDING MONEY INTO BUCKETS.</p>
@@ -199,16 +198,31 @@
     </div>
   </section>
 
+  <!-- Two-view summary -->
+  <section class="card">
+    <div class="seclabel"><h2>Weekly &amp; monthly view</h2></div>
+    <table class="sum">
+      <thead><tr><th></th><th>Per week</th><th>Per month</th></tr></thead>
+      <tbody>
+        <tr><td>Income</td><td id="sumIncomeW">£0.00</td><td id="sumIncomeM">£0.00</td></tr>
+        <tr><td>Monthly bills</td><td id="sumBillsW">£0.00</td><td id="sumBillsM">£0.00</td></tr>
+        <tr><td>Weekly outgoings</td><td id="sumOutW">£0.00</td><td id="sumOutM">£0.00</td></tr>
+        <tr><td>Savings</td><td id="sumSaveW">£0.00</td><td id="sumSaveM">£0.00</td></tr>
+        <tr class="emph"><td>Spending money</td><td id="sumSpendW">£0.00</td><td id="sumSpendM">£0.00</td></tr>
+      </tbody>
+    </table>
+  </section>
+
   <!-- Chart -->
   <section class="card" id="chartCard" style="display:none;">
-    <div class="seclabel"><h2>Where your week goes</h2></div>
+    <div class="seclabel"><h2>Where each week goes</h2></div>
     <div class="chart-wrap">
       <div class="donut">
-        <svg viewBox="0 0 160 160" width="100%" height="100%" id="donutSvg">
+        <svg viewBox="0 0 160 160" width="100%" height="100%">
           <circle cx="80" cy="80" r="54" fill="none" stroke="var(--paperDark)" stroke-width="22"/>
           <g id="donutSegs" transform="rotate(-90 80 80)"></g>
         </svg>
-        <div class="center"><span class="cl">INCOME</span><span class="cv" id="centerVal">£0.00</span></div>
+        <div class="center"><span class="cl">WEEKLY IN</span><span class="cv" id="centerVal">£0.00</span></div>
       </div>
       <div class="legend" id="legend"></div>
     </div>
@@ -221,6 +235,7 @@
 (function(){
   "use strict";
   var KEY = "weekly-ledger-v1";
+  var WPM = 52/12; // ~4.333 weeks per month
   var CUR = {
     GBP:{symbol:"£",locale:"en-GB",code:"GBP"},
     EUR:{symbol:"€",locale:"de-DE",code:"EUR"},
@@ -229,9 +244,10 @@
   var JAR_COLORS = ["#7a6db0","#3f7d8c","#c0683a","#9c8b3a","#8a5a7d","#5a8a6b"];
 
   var DEFAULT = {
-    income:"", currency:"GBP", savePct:20,
-    bills:[ {id:1,name:"Rent / housing",amount:""}, {id:2,name:"Phone",amount:""}, {id:3,name:"LISA",amount:"20"} ],
-    jars:[ {id:1,name:"Groceries",amount:""}, {id:2,name:"Transport",amount:""}, {id:3,name:"Fun money",amount:""} ]
+    _v:2, incomeMode:"monthly", income:"", currency:"GBP", savePct:20,
+    monthlyBills:[ {id:1,name:"Rent / housing",amount:""}, {id:2,name:"Phone",amount:""}, {id:3,name:"Subscriptions",amount:""} ],
+    weeklyOutgoings:[ {id:4,name:"LISA",amount:"20"}, {id:5,name:"Groceries",amount:""}, {id:6,name:"Transport",amount:""} ],
+    jars:[ {id:7,name:"Fun money",amount:""}, {id:8,name:"Eating out",amount:""} ]
   };
 
   var state = load();
@@ -239,233 +255,202 @@
   function newId(){ return ++uid; }
 
   function load(){
-    try{
-      var raw = localStorage.getItem(KEY);
-      if(raw){ return JSON.parse(raw); }
-    }catch(e){}
+    try{ var raw = localStorage.getItem(KEY); if(raw) return JSON.parse(raw); }catch(e){}
     return JSON.parse(JSON.stringify(DEFAULT));
   }
   var saveTimer;
   function save(){
     clearTimeout(saveTimer);
-    saveTimer = setTimeout(function(){
-      try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
-    }, 150);
+    saveTimer = setTimeout(function(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }, 150);
+  }
+
+  // ---- migrate older saved data (v1) to the monthly/weekly model (v2) ----
+  if(state._v !== 2){
+    if(!Array.isArray(state.monthlyBills)) state.monthlyBills = [];
+    if(!Array.isArray(state.weeklyOutgoings)) state.weeklyOutgoings = Array.isArray(state.bills) ? state.bills : [];
+    if(!Array.isArray(state.jars)) state.jars = [];
+    if(!state.incomeMode) state.incomeMode = "weekly"; // old income figure was weekly
+    delete state.bills; delete state._mig_lisa;
+    state._v = 2;
+    save();
   }
 
   function n(v){ var x = parseFloat(v); return (isNaN(x)||x<0)?0:x; }
-  function fmt(){
-    var c = CUR[state.currency];
-    return new Intl.NumberFormat(c.locale,{style:"currency",currency:c.code,minimumFractionDigits:2,maximumFractionDigits:2});
-  }
+  function fmt(){ var c = CUR[state.currency]; return new Intl.NumberFormat(c.locale,{style:"currency",currency:c.code,minimumFractionDigits:2,maximumFractionDigits:2}); }
   function money(x){ return fmt().format(x||0); }
-
-  // ---- element refs ----
   var $ = function(id){ return document.getElementById(id); };
-  var billsList = $("billsList"), jarsList = $("jarsList");
 
-  // ---- list rendering (built once, not on every keystroke) ----
+  // ---- derived figures ----
+  function calc(){
+    var income = n(state.income);
+    var weeklyIncome = state.incomeMode === "monthly" ? income/WPM : income;
+    var monthlyIncome = state.incomeMode === "monthly" ? income : income*WPM;
+    var monthlyBillsTotal = state.monthlyBills.reduce(function(s,b){return s+n(b.amount);},0);
+    var weeklySetAside = monthlyBillsTotal/WPM;
+    var weeklyOutTotal = state.weeklyOutgoings.reduce(function(s,o){return s+n(o.amount);},0);
+    var after = weeklyIncome - weeklySetAside - weeklyOutTotal;
+    var posAfter = Math.max(after,0);
+    var savings = posAfter*state.savePct/100;
+    var spendable = posAfter - savings;
+    var jarsTotal = state.jars.reduce(function(s,j){return s+n(j.amount);},0);
+    var unalloc = spendable - jarsTotal;
+    return {weeklyIncome:weeklyIncome,monthlyIncome:monthlyIncome,monthlyBillsTotal:monthlyBillsTotal,
+      weeklySetAside:weeklySetAside,weeklyOutTotal:weeklyOutTotal,after:after,savings:savings,
+      spendable:spendable,jarsTotal:jarsTotal,unalloc:unalloc};
+  }
+
+  // ---- rows ----
+  function arrFor(kind){ return kind==="monthly"?state.monthlyBills:kind==="weekly"?state.weeklyOutgoings:state.jars; }
   function makeRow(item, kind, color){
-    var el = document.createElement("div");
-    el.className = "item";
-    if(color){
-      var dot = document.createElement("span");
-      dot.className = "dot"; dot.style.background = color;
-      el.appendChild(dot);
-    }
-    var name = document.createElement("input");
-    name.className = "name"; name.type = "text";
-    name.placeholder = kind === "bill" ? "Bill name" : "Jar name";
-    name.value = item.name;
-    name.addEventListener("input", function(){ item.name = name.value; if(kind==="jar"){renderLegend();} save(); });
+    var el = document.createElement("div"); el.className="item";
+    if(color){ var dot=document.createElement("span"); dot.className="dot"; dot.style.background=color; el.appendChild(dot); }
+    var name=document.createElement("input"); name.className="name"; name.type="text";
+    name.placeholder = kind==="monthly"?"Bill name":kind==="weekly"?"Outgoing name":"Jar name";
+    name.value=item.name;
+    name.addEventListener("input",function(){ item.name=name.value; if(kind==="jar")renderLegend(); save(); });
     el.appendChild(name);
-
-    var sign = document.createElement("span");
-    sign.className = "sign"; sign.textContent = CUR[state.currency].symbol;
-    sign.setAttribute("data-sign","1");
-    el.appendChild(sign);
-
-    var amt = document.createElement("input");
-    amt.className = "amt"; amt.type = "number"; amt.inputMode = "decimal";
-    amt.placeholder = "0"; amt.value = item.amount;
-    amt.addEventListener("input", function(){ item.amount = amt.value; recompute(); save(); });
+    var sign=document.createElement("span"); sign.className="sign"; sign.setAttribute("data-sign","1"); sign.textContent=CUR[state.currency].symbol; el.appendChild(sign);
+    var amt=document.createElement("input"); amt.className="amt"; amt.type="number"; amt.inputMode="decimal"; amt.placeholder="0"; amt.value=item.amount;
+    amt.addEventListener("input",function(){ item.amount=amt.value; recompute(); save(); });
     el.appendChild(amt);
-
-    var x = document.createElement("button");
-    x.className = "x"; x.innerHTML = "✕"; x.title = "Remove";
-    x.addEventListener("click", function(){
-      var arr = kind === "bill" ? state.bills : state.jars;
-      var i = arr.indexOf(item); if(i>-1) arr.splice(i,1);
-      el.remove(); recompute(); save();
-    });
+    var x=document.createElement("button"); x.className="x"; x.innerHTML="✕"; x.title="Remove";
+    x.addEventListener("click",function(){ var arr=arrFor(kind); var i=arr.indexOf(item); if(i>-1)arr.splice(i,1); el.remove(); recompute(); save(); });
     el.appendChild(x);
     return el;
   }
-
-  function renderBills(){
-    billsList.innerHTML = "";
-    state.bills.forEach(function(b){ billsList.appendChild(makeRow(b,"bill",null)); });
-  }
-  function renderJars(){
-    jarsList.innerHTML = "";
-    state.jars.forEach(function(j,i){ jarsList.appendChild(makeRow(j,"jar",JAR_COLORS[i%JAR_COLORS.length])); });
+  function renderList(kind){
+    var box = kind==="monthly"?$("monthlyList"):kind==="weekly"?$("weeklyList"):$("jarsList");
+    box.innerHTML="";
+    arrFor(kind).forEach(function(it,i){ box.appendChild(makeRow(it,kind, kind==="jar"?JAR_COLORS[i%JAR_COLORS.length]:null)); });
   }
 
   // ---- donut + legend ----
-  var C = 2 * Math.PI * 54;
-  function segments(){
-    var income = n(state.income);
-    var billsTotal = state.bills.reduce(function(s,b){return s+n(b.amount);},0);
-    var positiveAfter = Math.max(income - billsTotal, 0);
-    var savings = positiveAfter * state.savePct/100;
-    var spendable = positiveAfter - savings;
-    var jarsTotal = state.jars.reduce(function(s,j){return s+n(j.amount);},0);
-    var unalloc = spendable - jarsTotal;
-    var segs = [];
-    if(billsTotal>0) segs.push({name:"Bills",value:billsTotal,color:getCss("--bills")});
-    if(savings>0) segs.push({name:"Savings",value:savings,color:getCss("--savings")});
-    state.jars.forEach(function(j,i){ var a=n(j.amount); if(a>0) segs.push({name:j.name||"Jar",value:a,color:JAR_COLORS[i%JAR_COLORS.length]}); });
-    if(unalloc>0.005) segs.push({name:"Unallocated",value:unalloc,color:getCss("--unalloc")});
-    return {segs:segs, income:income};
-  }
+  var C = 2*Math.PI*54;
   function getCss(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
-
+  function segments(){
+    var c = calc();
+    var segs=[];
+    if(c.weeklySetAside>0) segs.push({name:"Monthly bills",value:c.weeklySetAside,color:getCss("--bills")});
+    if(c.weeklyOutTotal>0) segs.push({name:"Weekly outgoings",value:c.weeklyOutTotal,color:getCss("--outgoings")});
+    if(c.savings>0) segs.push({name:"Savings",value:c.savings,color:getCss("--savings")});
+    state.jars.forEach(function(j,i){ var a=n(j.amount); if(a>0) segs.push({name:j.name||"Jar",value:a,color:JAR_COLORS[i%JAR_COLORS.length]}); });
+    if(c.unalloc>0.005) segs.push({name:"Unallocated",value:c.unalloc,color:getCss("--unalloc")});
+    return {segs:segs, whole:c.weeklyIncome};
+  }
   function renderChart(){
-    var d = segments();
-    var card = $("chartCard");
-    var income = n(state.income), billsTotal = state.bills.reduce(function(s,b){return s+n(b.amount);},0);
-    if((income<=0 && billsTotal<=0) || d.segs.length===0){ card.style.display="none"; return; }
-    card.style.display = "block";
-    $("centerVal").textContent = money(d.income);
-    var g = $("donutSegs"); g.innerHTML = "";
-    var total = d.segs.reduce(function(s,x){return s+x.value;},0);
-    var offset = 0;
+    var d=segments(), c=calc();
+    var card=$("chartCard");
+    if(c.weeklyIncome<=0 && c.weeklySetAside<=0 && c.weeklyOutTotal<=0 || d.segs.length===0){ card.style.display="none"; return; }
+    card.style.display="block";
+    $("centerVal").textContent=money(d.whole);
+    var g=$("donutSegs"); g.innerHTML="";
+    var total=d.segs.reduce(function(s,x){return s+x.value;},0), offset=0;
     d.segs.forEach(function(seg){
-      var frac = total>0 ? seg.value/total : 0;
-      var len = frac * C;
-      var c = document.createElementNS("http://www.w3.org/2000/svg","circle");
-      c.setAttribute("cx","80"); c.setAttribute("cy","80"); c.setAttribute("r","54");
-      c.setAttribute("fill","none"); c.setAttribute("stroke",seg.color); c.setAttribute("stroke-width","22");
-      c.setAttribute("stroke-dasharray", (Math.max(len-1.5,0))+" "+(C-Math.max(len-1.5,0)));
-      c.setAttribute("stroke-dashoffset", (-offset));
-      g.appendChild(c);
-      offset += len;
+      var len=(total>0?seg.value/total:0)*C;
+      var el=document.createElementNS("http://www.w3.org/2000/svg","circle");
+      el.setAttribute("cx","80");el.setAttribute("cy","80");el.setAttribute("r","54");
+      el.setAttribute("fill","none");el.setAttribute("stroke",seg.color);el.setAttribute("stroke-width","22");
+      el.setAttribute("stroke-dasharray",(Math.max(len-1.5,0))+" "+(C-Math.max(len-1.5,0)));
+      el.setAttribute("stroke-dashoffset",(-offset));
+      g.appendChild(el); offset+=len;
     });
     renderLegend(d);
   }
   function renderLegend(d){
-    d = d || segments();
-    var leg = $("legend"); leg.innerHTML = "";
-    var income = d.income;
+    d=d||segments(); var leg=$("legend"); leg.innerHTML=""; var whole=d.whole;
     d.segs.forEach(function(seg){
-      var row = document.createElement("div"); row.className="leg";
-      row.innerHTML = '<span class="sw" style="background:'+seg.color+'"></span>'+
-        '<span class="ln">'+escapeHtml(seg.name)+'</span>'+
-        '<span class="lv">'+money(seg.value)+'</span>'+
-        '<span class="lp">'+(income>0?Math.round(seg.value/income*100):0)+'%</span>';
+      var row=document.createElement("div"); row.className="leg";
+      row.innerHTML='<span class="sw" style="background:'+seg.color+'"></span><span class="ln">'+esc(seg.name)+'</span><span class="lv">'+money(seg.value)+'</span><span class="lp">'+(whole>0?Math.round(seg.value/whole*100):0)+'%</span>';
       leg.appendChild(row);
     });
   }
-  function escapeHtml(s){ return (s||"").replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+  function esc(s){ return (s||"").replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
 
-  // ---- recompute all derived figures ----
+  // ---- recompute everything ----
   function recompute(){
-    var income = n(state.income);
-    var billsTotal = state.bills.reduce(function(s,b){return s+n(b.amount);},0);
-    var afterBills = income - billsTotal;
-    var positiveAfter = Math.max(afterBills,0);
-    var savings = positiveAfter * state.savePct/100;
-    var spendable = positiveAfter - savings;
-    var jarsTotal = state.jars.reduce(function(s,j){return s+n(j.amount);},0);
-    var unalloc = spendable - jarsTotal;
-    var over = afterBills < 0;
-    var overAlloc = unalloc < -0.005;
+    var c=calc();
+    $("monthlyTotal").textContent=money(c.monthlyBillsTotal);
+    $("weeklySetAside").textContent=money(c.weeklySetAside);
+    $("weeklyOutTotal").textContent=money(c.weeklyOutTotal);
 
-    $("billsTotal").textContent = money(billsTotal);
+    var over=c.after<0;
+    $("banner").className="banner"+(over?" over":"");
+    $("afterLbl").textContent=over?"SHORTFALL — COMMITMENTS EXCEED INCOME":"LEFT EACH WEEK AFTER COMMITMENTS";
+    $("afterVal").textContent=money(c.after);
+    $("afterCalc").innerHTML=money(c.weeklyIncome)+" in / wk<br>− "+money(c.weeklySetAside)+" bills pot<br>− "+money(c.weeklyOutTotal)+" weekly";
 
-    var banner = $("banner");
-    banner.className = "banner" + (over ? " over" : "");
-    $("bannerLbl").textContent = over ? "SHORTFALL — BILLS EXCEED INCOME" : "LEFT AFTER BILLS";
-    $("afterBills").textContent = money(afterBills);
-    $("bannerCalc").innerHTML = money(income)+" in<br>− "+money(billsTotal)+" bills";
+    $("saveLbl").textContent="SAVE "+state.savePct+"%";
+    $("spendLbl").textContent="SPEND "+(100-state.savePct)+"%";
+    $("savings").textContent=money(c.savings);
+    $("spendable").textContent=money(c.spendable);
+    $("daily").textContent=c.spendable>0?"≈ "+money(c.spendable/7)+" per day to spend":"";
 
-    $("saveLbl").textContent = "SAVE "+state.savePct+"%";
-    $("spendLbl").textContent = "SPEND "+(100-state.savePct)+"%";
-    $("savings").textContent = money(savings);
-    $("spendable").textContent = money(spendable);
-    $("daily").textContent = spendable>0 ? "≈ "+money(spendable/7)+" per day to spend" : "";
+    $("jarHint").textContent="DIVIDE YOUR "+money(c.spendable)+" WEEKLY SPENDING MONEY INTO BUCKETS.";
+    var overAlloc=c.unalloc<-0.005;
+    $("unallocLbl").textContent=overAlloc?"OVER-ALLOCATED BY":"STILL UNALLOCATED";
+    var u=$("unalloc"); u.textContent=money(Math.abs(c.unalloc)); u.style.color=overAlloc?"var(--bills)":"var(--ink)";
 
-    $("jarHint").textContent = "DIVIDE YOUR "+money(spendable)+" SPENDING MONEY INTO BUCKETS.";
-    $("unallocLbl").textContent = overAlloc ? "OVER-ALLOCATED BY" : "STILL UNALLOCATED";
-    var uEl = $("unalloc");
-    uEl.textContent = money(Math.abs(unalloc));
-    uEl.style.color = overAlloc ? "var(--bills)" : "var(--ink)";
+    // income equivalent
+    if(state.incomeMode==="monthly"){ $("incomeEquiv").textContent = n(state.income)>0 ? "≈ "+money(c.weeklyIncome)+" per week to work with" : ""; }
+    else { $("incomeEquiv").textContent = n(state.income)>0 ? "≈ "+money(c.monthlyIncome)+" per month" : ""; }
+
+    // two-view summary
+    $("sumIncomeW").textContent=money(c.weeklyIncome); $("sumIncomeM").textContent=money(c.monthlyIncome);
+    $("sumBillsW").textContent=money(c.weeklySetAside); $("sumBillsM").textContent=money(c.monthlyBillsTotal);
+    $("sumOutW").textContent=money(c.weeklyOutTotal); $("sumOutM").textContent=money(c.weeklyOutTotal*WPM);
+    $("sumSaveW").textContent=money(c.savings); $("sumSaveM").textContent=money(c.savings*WPM);
+    $("sumSpendW").textContent=money(c.spendable); $("sumSpendM").textContent=money(c.spendable*WPM);
 
     renderChart();
   }
 
-  // ---- currency sign refresh ----
   function refreshSigns(){
-    var sym = CUR[state.currency].symbol;
-    $("cursign").textContent = sym;
-    Array.prototype.forEach.call(document.querySelectorAll('[data-sign]'), function(el){ el.textContent = sym; });
+    var sym=CUR[state.currency].symbol;
+    $("cursign").textContent=sym;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-sign]'),function(el){ el.textContent=sym; });
+  }
+
+  function refreshMode(){
+    $("modeMonthly").className = state.incomeMode==="monthly"?"active":"";
+    $("modeWeekly").className = state.incomeMode==="weekly"?"active":"";
+    $("incomeLbl").textContent = state.incomeMode==="monthly"?"YOUR MONTHLY TAKE-HOME PAY":"YOUR WEEKLY INCOME";
   }
 
   // ---- wire controls ----
-  $("income").value = state.income;
-  $("income").addEventListener("input", function(e){ state.income = e.target.value; recompute(); save(); });
+  $("income").value=state.income;
+  $("income").addEventListener("input",function(e){ state.income=e.target.value; recompute(); save(); });
+  $("savePct").value=state.savePct;
+  $("savePct").addEventListener("input",function(e){ state.savePct=parseInt(e.target.value,10); recompute(); save(); });
+  $("currency").value=state.currency;
+  $("currency").addEventListener("change",function(e){ state.currency=e.target.value; refreshSigns(); recompute(); save(); });
+  $("modeMonthly").addEventListener("click",function(){ state.incomeMode="monthly"; refreshMode(); recompute(); save(); });
+  $("modeWeekly").addEventListener("click",function(){ state.incomeMode="weekly"; refreshMode(); recompute(); save(); });
 
-  $("savePct").value = state.savePct;
-  $("savePct").addEventListener("input", function(e){ state.savePct = parseInt(e.target.value,10); recompute(); save(); });
+  $("addMonthly").addEventListener("click",function(){ var b={id:newId(),name:"",amount:""}; state.monthlyBills.push(b); $("monthlyList").appendChild(makeRow(b,"monthly",null)); save(); });
+  $("addWeekly").addEventListener("click",function(){ var o={id:newId(),name:"",amount:""}; state.weeklyOutgoings.push(o); $("weeklyList").appendChild(makeRow(o,"weekly",null)); save(); });
+  $("addJar").addEventListener("click",function(){ var j={id:newId(),name:"",amount:""}; state.jars.push(j); renderList("jar"); recompute(); save(); });
 
-  $("currency").value = state.currency;
-  $("currency").addEventListener("change", function(e){
-    state.currency = e.target.value; refreshSigns(); recompute(); save();
+  $("split").addEventListener("click",function(){
+    var c=calc(); var named=state.jars.filter(function(j){return j.name.trim();});
+    if(named.length===0||c.spendable<=0) return;
+    var per=c.spendable/named.length;
+    state.jars.forEach(function(j){ if(j.name.trim()) j.amount=per.toFixed(2); });
+    renderList("jar"); recompute(); save();
   });
 
-  $("addBill").addEventListener("click", function(){
-    var b = {id:newId(),name:"",amount:""}; state.bills.push(b);
-    billsList.appendChild(makeRow(b,"bill",null)); save();
-  });
-  $("addJar").addEventListener("click", function(){
-    var j = {id:newId(),name:"",amount:""}; state.jars.push(j);
-    renderJars(); recompute(); save();
-  });
-
-  $("split").addEventListener("click", function(){
-    var income = n(state.income);
-    var billsTotal = state.bills.reduce(function(s,b){return s+n(b.amount);},0);
-    var positiveAfter = Math.max(income - billsTotal,0);
-    var spendable = positiveAfter - positiveAfter*state.savePct/100;
-    var named = state.jars.filter(function(j){return j.name.trim();});
-    if(named.length===0 || spendable<=0) return;
-    var per = spendable/named.length;
-    state.jars.forEach(function(j){ if(j.name.trim()) j.amount = per.toFixed(2); });
-    renderJars(); recompute(); save();
-  });
-
-  $("reset").addEventListener("click", function(){
+  $("reset").addEventListener("click",function(){
     if(confirm("Clear all entries and start over?")){
-      var c = state.currency;
-      state = JSON.parse(JSON.stringify(DEFAULT));
-      state.currency = c;
-      $("income").value = "";
-      $("savePct").value = 20;
-      $("currency").value = c;
-      renderBills(); renderJars(); refreshSigns(); recompute(); save();
+      var cur=state.currency;
+      state=JSON.parse(JSON.stringify(DEFAULT)); state.currency=cur;
+      $("income").value=""; $("savePct").value=20; $("currency").value=cur;
+      renderList("monthly"); renderList("weekly"); renderList("jar");
+      refreshMode(); refreshSigns(); recompute(); save();
     }
   });
 
-  // ---- one-time migration: ensure LISA line exists for already-saved data ----
-  if(!state._mig_lisa){
-    var hasLisa = state.bills.some(function(b){ return (b.name||"").trim().toUpperCase()==="LISA"; });
-    if(!hasLisa){ state.bills.push({id:newId(),name:"LISA",amount:"20"}); }
-    state._mig_lisa = true;
-    save();
-  }
-
   // ---- initial paint ----
-  renderBills(); renderJars(); refreshSigns(); recompute();
+  renderList("monthly"); renderList("weekly"); renderList("jar");
+  refreshMode(); refreshSigns(); recompute();
 })();
 </script>
 </body>
