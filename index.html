@@ -36,25 +36,28 @@
   .seclabel{display:flex;align-items:center;gap:9px;}
   .step{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--card);background:var(--ink);border-radius:6px;padding:3px 6px;}
   .row-between{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
-  .toggle{display:inline-flex;background:var(--paperDark);border-radius:9px;padding:3px;gap:3px;margin-top:6px;}
-  .toggle button{font-family:'JetBrains Mono',monospace;font-size:12px;border:none;background:transparent;color:var(--inkSoft);padding:7px 14px;border-radius:7px;cursor:pointer;font-weight:500;}
-  .toggle button.active{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12);}
   .income-row{display:flex;align-items:baseline;gap:10px;margin-top:14px;}
   .cursign{font-size:36px;color:var(--inkSoft);}
   #income{flex:1;min-width:0;font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:600;border:none;border-bottom:2px solid var(--line);background:transparent;color:var(--ink);padding:0 0 4px;}
   #income:focus{outline:none;border-color:var(--ink);}
   .hint{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--inkSoft);}
-  .equiv{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--savings);margin-top:10px;font-weight:500;}
+  .bigweekly{margin-top:14px;background:var(--ink);color:var(--paper);border-radius:12px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
+  .bigweekly .l{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;opacity:.72;}
+  .bigweekly .v{font-size:30px;font-weight:600;}
   .list{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
-  .item{display:flex;align-items:center;gap:8px;background:var(--paperDark);border-radius:9px;padding:8px 10px;}
+  .item{display:flex;align-items:center;gap:7px;background:var(--paperDark);border-radius:9px;padding:8px 10px;}
   .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
-  .item .name{flex:1;min-width:0;border:none;background:transparent;font-family:'Fraunces',serif;font-size:15px;color:var(--ink);}
+  .item .name{flex:1;min-width:40px;border:none;background:transparent;font-family:'Fraunces',serif;font-size:15px;color:var(--ink);}
   .item .name:focus{outline:none;}
+  .item .day{width:46px;border:1px solid var(--line);border-radius:6px;background:var(--card);font-family:'JetBrains Mono',monospace;font-size:12.5px;text-align:center;padding:5px 4px;color:var(--ink);}
+  .item .day:focus{outline:none;border-color:var(--ink);}
   .item .sign{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--inkSoft);}
-  .item .amt{width:84px;border:1px solid var(--line);border-radius:6px;background:var(--card);font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;text-align:right;padding:5px 8px;color:var(--ink);}
+  .item .amt{width:74px;border:1px solid var(--line);border-radius:6px;background:var(--card);font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;text-align:right;padding:5px 7px;color:var(--ink);}
   .item .amt:focus{outline:none;border-color:var(--ink);}
-  .x{background:none;border:none;display:flex;padding:3px;color:var(--ink);opacity:.4;cursor:pointer;transition:opacity .12s;}
+  .x{background:none;border:none;display:flex;padding:2px;color:var(--ink);opacity:.4;cursor:pointer;transition:opacity .12s;}
   .x:hover{opacity:1;}
+  .colhdr{display:flex;gap:7px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.5px;color:var(--inkSoft);padding:0 10px;margin-top:12px;text-transform:uppercase;}
+  .colhdr .c1{flex:1;} .colhdr .c2{width:46px;text-align:center;} .colhdr .c3{width:88px;text-align:right;padding-right:24px;}
   .add{margin-top:10px;width:100%;justify-content:center;background:transparent;border:1.5px dashed var(--line);color:var(--inkSoft);border-radius:9px;padding:9px 14px;font-weight:500;}
   .footer-stats{margin-top:16px;padding-top:14px;border-top:1.5px dashed var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
   .fstat .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--inkSoft);}
@@ -62,6 +65,25 @@
   .total{text-align:right;}
   .total .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--inkSoft);}
   .total .val{font-size:22px;font-weight:600;}
+  .thisweek{background:var(--savings);color:#fff;border-radius:11px;padding:14px 16px;margin-bottom:14px;}
+  .thisweek .tl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;opacity:.85;}
+  .thisweek .tv{font-size:26px;font-weight:600;line-height:1.15;}
+  .thisweek .td{font-family:'JetBrains Mono',monospace;font-size:12px;opacity:.9;margin-top:4px;}
+  .sched{display:flex;flex-direction:column;gap:9px;}
+  .wk{background:var(--paperDark);border-radius:10px;padding:11px 13px;border-left:4px solid var(--line);}
+  .wk.current{border-left-color:var(--savings);background:#eee2cb;}
+  .wk-head{display:flex;justify-content:space-between;align-items:baseline;}
+  .wk-head .wn{font-size:16px;font-weight:600;}
+  .wk-head .wd{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--inkSoft);}
+  .wk-bills{margin-top:6px;display:flex;flex-direction:column;gap:3px;}
+  .billline{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:12.5px;}
+  .billline .bd{color:var(--inkSoft);}
+  .nobills{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--inkSoft);font-style:italic;}
+  .wk-foot{margin-top:8px;padding-top:8px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11.5px;}
+  .wk-foot .seg{display:flex;flex-direction:column;gap:1px;}
+  .wk-foot .seg .k{font-size:9.5px;letter-spacing:.5px;color:var(--inkSoft);}
+  .wk-foot .seg .vv{font-size:13px;font-weight:600;}
+  .pot-neg{color:var(--bills);}
   .banner{border-radius:14px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:18px;color:var(--paper);background:var(--ink);}
   .banner.over{background:#7d2f1e;}
   .banner .blbl{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;opacity:.72;}
@@ -105,7 +127,7 @@
 <div class="wrap">
   <header>
     <div>
-      <div class="eyebrow">Personal Finance · Monthly &amp; Weekly</div>
+      <div class="eyebrow">Personal Finance · Paid Monthly</div>
       <h1>The Weekly Ledger</h1>
     </div>
     <div class="controls">
@@ -118,58 +140,65 @@
     </div>
   </header>
 
-  <!-- Income -->
+  <!-- 01 Monthly pay -->
   <section class="card">
-    <div class="seclabel"><span class="step">01</span><h2>Money coming in</h2></div>
-    <div class="toggle" id="modeToggle">
-      <button id="modeMonthly">Paid monthly</button>
-      <button id="modeWeekly">Paid weekly</button>
-    </div>
+    <div class="seclabel"><span class="step">01</span><h2>Monthly pay</h2></div>
     <div class="income-row">
       <span class="cursign" id="cursign">£</span>
       <input id="income" type="number" inputmode="decimal" placeholder="0.00" />
     </div>
-    <p class="hint" id="incomeLbl" style="margin-top:8px;">YOUR MONTHLY TAKE-HOME PAY</p>
-    <p class="equiv" id="incomeEquiv"></p>
+    <p class="hint" style="margin-top:8px;">YOUR MONTHLY TAKE-HOME PAY</p>
+    <div class="bigweekly"><span class="l">WEEKLY AMOUNT (÷ 4)</span><span class="v" id="weeklyChunk">£0.00</span></div>
   </section>
 
-  <!-- Monthly bills -->
+  <!-- 02 Monthly bills with dates -->
   <section class="card">
-    <div class="row-between">
-      <div class="seclabel"><span class="step">02</span><h2>Monthly bills</h2></div>
-    </div>
-    <p class="hint" style="margin:6px 0 0;">ENTER EACH AT ITS MONTHLY COST. A SLICE IS SET ASIDE EACH WEEK SO IT'S COVERED WHEN DUE.</p>
+    <div class="seclabel"><span class="step">02</span><h2>Monthly bills &amp; dates</h2></div>
+    <p class="hint" style="margin:6px 0 0;">ENTER EACH BILL'S MONTHLY COST AND THE DAY IT LEAVES YOUR ACCOUNT.</p>
+    <div class="colhdr"><span class="c1">Bill</span><span class="c2">Day</span><span class="c3">Amount</span></div>
     <div class="list" id="monthlyList"></div>
     <button class="btn add" id="addMonthly">＋ Add a monthly bill</button>
     <div class="footer-stats">
       <div class="fstat"><div class="lbl">MONTHLY TOTAL</div><div class="val" id="monthlyTotal" style="color:var(--bills)">£0.00</div></div>
-      <div class="fstat" style="text-align:right"><div class="lbl">SET ASIDE WEEKLY (÷ 4.33)</div><div class="val" id="weeklySetAside" style="color:var(--bills)">£0.00</div></div>
+      <div class="fstat" style="text-align:right"><div class="lbl">SET ASIDE WEEKLY (÷ 4)</div><div class="val" id="weeklySetAside" style="color:var(--bills)">£0.00</div></div>
     </div>
   </section>
 
-  <!-- Weekly outgoings -->
+  <!-- 03 Schedule -->
+  <section class="card">
+    <div class="seclabel"><span class="step">03</span><h2 id="schedTitle">This month, week by week</h2></div>
+    <p class="hint" style="margin:6px 0 14px;">WHEN EACH BILL LANDS, AND THE POT BALANCE IF YOU SET THE WEEKLY AMOUNT ASIDE.</p>
+    <div class="thisweek" id="thisweek" style="display:none;">
+      <div class="tl">SET ASIDE THIS WEEK</div>
+      <div class="tv" id="twAmount">£0.00</div>
+      <div class="td" id="twDue"></div>
+    </div>
+    <div class="sched" id="sched"></div>
+  </section>
+
+  <!-- 04 Weekly outgoings -->
   <section class="card">
     <div class="row-between">
-      <div class="seclabel"><span class="step">03</span><h2>Weekly outgoings</h2></div>
+      <div class="seclabel"><span class="step">04</span><h2>Weekly outgoings</h2></div>
       <div class="total"><div class="lbl">PER WEEK</div><div class="val" id="weeklyOutTotal" style="color:var(--outgoings)">£0.00</div></div>
     </div>
-    <p class="hint" style="margin:6px 0 0;">THINGS YOU PAY WEEKLY — TRAVEL, A SET GROCERY BUDGET, LISA, ETC.</p>
+    <p class="hint" style="margin:6px 0 0;">PAID WEEKLY — LISA, TRAVEL, A SET GROCERY BUDGET, ETC.</p>
     <div class="list" id="weeklyList"></div>
     <button class="btn add" id="addWeekly">＋ Add a weekly outgoing</button>
   </section>
 
-  <!-- After commitments banner -->
+  <!-- allowance banner -->
   <div class="banner" id="banner">
     <div>
-      <div class="blbl" id="afterLbl">LEFT EACH WEEK AFTER COMMITMENTS</div>
+      <div class="blbl" id="afterLbl">YOUR WEEKLY ALLOWANCE TO SAVE / SPEND</div>
       <div class="bval" id="afterVal">£0.00</div>
     </div>
     <div class="calc" id="afterCalc"></div>
   </div>
 
-  <!-- Save vs spend -->
+  <!-- 05 Save vs spend -->
   <section class="card">
-    <div class="seclabel"><span class="step">04</span><h2>Save vs. spend</h2></div>
+    <div class="seclabel"><span class="step">05</span><h2>Save vs. spend</h2></div>
     <p class="hint" style="margin:4px 0 18px;">SUGGESTED: PUT ASIDE ~20% OF WHAT'S LEFT. DRAG TO ADJUST.</p>
     <div class="slider-tops">
       <span id="saveLbl" style="color:var(--savings)">SAVE 20%</span>
@@ -183,10 +212,10 @@
     <p class="daily" id="daily"></p>
   </section>
 
-  <!-- Jars -->
+  <!-- 06 Jars -->
   <section class="card">
     <div class="row-between">
-      <div class="seclabel"><span class="step">05</span><h2>Separate into jars</h2></div>
+      <div class="seclabel"><span class="step">06</span><h2>Separate into jars</h2></div>
       <button class="btn btn-split" id="split">✦ Split evenly</button>
     </div>
     <p class="hint" id="jarHint" style="margin:4px 0 14px;">DIVIDE YOUR SPENDING MONEY INTO BUCKETS.</p>
@@ -198,13 +227,13 @@
     </div>
   </section>
 
-  <!-- Two-view summary -->
+  <!-- summary -->
   <section class="card">
     <div class="seclabel"><h2>Weekly &amp; monthly view</h2></div>
     <table class="sum">
       <thead><tr><th></th><th>Per week</th><th>Per month</th></tr></thead>
       <tbody>
-        <tr><td>Income</td><td id="sumIncomeW">£0.00</td><td id="sumIncomeM">£0.00</td></tr>
+        <tr><td>Pay</td><td id="sumIncomeW">£0.00</td><td id="sumIncomeM">£0.00</td></tr>
         <tr><td>Monthly bills</td><td id="sumBillsW">£0.00</td><td id="sumBillsM">£0.00</td></tr>
         <tr><td>Weekly outgoings</td><td id="sumOutW">£0.00</td><td id="sumOutM">£0.00</td></tr>
         <tr><td>Savings</td><td id="sumSaveW">£0.00</td><td id="sumSaveM">£0.00</td></tr>
@@ -213,7 +242,7 @@
     </table>
   </section>
 
-  <!-- Chart -->
+  <!-- chart -->
   <section class="card" id="chartCard" style="display:none;">
     <div class="seclabel"><h2>Where each week goes</h2></div>
     <div class="chart-wrap">
@@ -222,7 +251,7 @@
           <circle cx="80" cy="80" r="54" fill="none" stroke="var(--paperDark)" stroke-width="22"/>
           <g id="donutSegs" transform="rotate(-90 80 80)"></g>
         </svg>
-        <div class="center"><span class="cl">WEEKLY IN</span><span class="cv" id="centerVal">£0.00</span></div>
+        <div class="center"><span class="cl">WEEKLY</span><span class="cv" id="centerVal">£0.00</span></div>
       </div>
       <div class="legend" id="legend"></div>
     </div>
@@ -235,17 +264,13 @@
 (function(){
   "use strict";
   var KEY = "weekly-ledger-v1";
-  var WPM = 52/12; // ~4.333 weeks per month
-  var CUR = {
-    GBP:{symbol:"£",locale:"en-GB",code:"GBP"},
-    EUR:{symbol:"€",locale:"de-DE",code:"EUR"},
-    USD:{symbol:"$",locale:"en-US",code:"USD"}
-  };
+  var WK = 4; // weeks per month (intuitive model)
+  var CUR = {GBP:{symbol:"£",locale:"en-GB",code:"GBP"},EUR:{symbol:"€",locale:"de-DE",code:"EUR"},USD:{symbol:"$",locale:"en-US",code:"USD"}};
   var JAR_COLORS = ["#7a6db0","#3f7d8c","#c0683a","#9c8b3a","#8a5a7d","#5a8a6b"];
 
   var DEFAULT = {
-    _v:2, incomeMode:"monthly", income:"", currency:"GBP", savePct:20,
-    monthlyBills:[ {id:1,name:"Rent / housing",amount:""}, {id:2,name:"Phone",amount:""}, {id:3,name:"Subscriptions",amount:""} ],
+    _v:3, income:"", currency:"GBP", savePct:20,
+    monthlyBills:[ {id:1,name:"Rent / housing",amount:"",day:"1"}, {id:2,name:"Phone",amount:"",day:"15"}, {id:3,name:"Subscriptions",amount:"",day:"20"} ],
     weeklyOutgoings:[ {id:4,name:"LISA",amount:"20"}, {id:5,name:"Groceries",amount:""}, {id:6,name:"Transport",amount:""} ],
     jars:[ {id:7,name:"Fun money",amount:""}, {id:8,name:"Eating out",amount:""} ]
   };
@@ -253,131 +278,167 @@
   var state = load();
   var uid = Date.now();
   function newId(){ return ++uid; }
-
-  function load(){
-    try{ var raw = localStorage.getItem(KEY); if(raw) return JSON.parse(raw); }catch(e){}
-    return JSON.parse(JSON.stringify(DEFAULT));
-  }
+  function load(){ try{ var r=localStorage.getItem(KEY); if(r) return JSON.parse(r); }catch(e){} return JSON.parse(JSON.stringify(DEFAULT)); }
   var saveTimer;
-  function save(){
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(function(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }, 150);
-  }
+  function save(){ clearTimeout(saveTimer); saveTimer=setTimeout(function(){ try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){} },150); }
 
-  // ---- migrate older saved data (v1) to the monthly/weekly model (v2) ----
-  if(state._v !== 2){
+  // ---- migrate any older saved data to v3 ----
+  if(state._v !== 3){
     if(!Array.isArray(state.monthlyBills)) state.monthlyBills = [];
     if(!Array.isArray(state.weeklyOutgoings)) state.weeklyOutgoings = Array.isArray(state.bills) ? state.bills : [];
     if(!Array.isArray(state.jars)) state.jars = [];
-    if(!state.incomeMode) state.incomeMode = "weekly"; // old income figure was weekly
-    delete state.bills; delete state._mig_lisa;
-    state._v = 2;
-    save();
+    if(state.incomeMode==="weekly"){ var inc=parseFloat(state.income); if(!isNaN(inc)) state.income=String(Math.round(inc*4*100)/100); }
+    state.monthlyBills.forEach(function(b){ if(b.day===undefined) b.day=""; });
+    delete state.bills; delete state._mig_lisa; delete state.incomeMode;
+    state._v = 3; save();
   }
 
-  function n(v){ var x = parseFloat(v); return (isNaN(x)||x<0)?0:x; }
-  function fmt(){ var c = CUR[state.currency]; return new Intl.NumberFormat(c.locale,{style:"currency",currency:c.code,minimumFractionDigits:2,maximumFractionDigits:2}); }
+  function n(v){ var x=parseFloat(v); return (isNaN(x)||x<0)?0:x; }
+  function fmt(){ var c=CUR[state.currency]; return new Intl.NumberFormat(c.locale,{style:"currency",currency:c.code,minimumFractionDigits:2,maximumFractionDigits:2}); }
   function money(x){ return fmt().format(x||0); }
-  var $ = function(id){ return document.getElementById(id); };
+  var $=function(id){ return document.getElementById(id); };
 
-  // ---- derived figures ----
+  // calendar facts for the current month
+  var NOW=new Date(), Y=NOW.getFullYear(), MO=NOW.getMonth(), TODAY=NOW.getDate();
+  var DIM=new Date(Y,MO+1,0).getDate();
+  var MONTH_LONG=NOW.toLocaleString('en-GB',{month:'long'});
+  var MONTH_SHORT=NOW.toLocaleString('en-GB',{month:'short'});
+  var WEEK_RANGES=[[1,7],[8,14],[15,21],[22,DIM]];
+  function weekOfDay(d){ if(d<=7)return 0; if(d<=14)return 1; if(d<=21)return 2; return 3; }
+  function ord(d){ var s=["th","st","nd","rd"], v=d%100; return d+(s[(v-20)%10]||s[v]||s[0]); }
+  var CURRENT_WK=weekOfDay(TODAY);
+
   function calc(){
-    var income = n(state.income);
-    var weeklyIncome = state.incomeMode === "monthly" ? income/WPM : income;
-    var monthlyIncome = state.incomeMode === "monthly" ? income : income*WPM;
-    var monthlyBillsTotal = state.monthlyBills.reduce(function(s,b){return s+n(b.amount);},0);
-    var weeklySetAside = monthlyBillsTotal/WPM;
-    var weeklyOutTotal = state.weeklyOutgoings.reduce(function(s,o){return s+n(o.amount);},0);
-    var after = weeklyIncome - weeklySetAside - weeklyOutTotal;
-    var posAfter = Math.max(after,0);
-    var savings = posAfter*state.savePct/100;
-    var spendable = posAfter - savings;
-    var jarsTotal = state.jars.reduce(function(s,j){return s+n(j.amount);},0);
-    var unalloc = spendable - jarsTotal;
-    return {weeklyIncome:weeklyIncome,monthlyIncome:monthlyIncome,monthlyBillsTotal:monthlyBillsTotal,
-      weeklySetAside:weeklySetAside,weeklyOutTotal:weeklyOutTotal,after:after,savings:savings,
-      spendable:spendable,jarsTotal:jarsTotal,unalloc:unalloc};
+    var pay=n(state.income);
+    var weeklyChunk=pay/WK;
+    var monthlyBillsTotal=state.monthlyBills.reduce(function(s,b){return s+n(b.amount);},0);
+    var weeklySetAside=monthlyBillsTotal/WK;
+    var weeklyOutTotal=state.weeklyOutgoings.reduce(function(s,o){return s+n(o.amount);},0);
+    var allowance=weeklyChunk-weeklySetAside-weeklyOutTotal;
+    var posA=Math.max(allowance,0);
+    var savings=posA*state.savePct/100;
+    var spendable=posA-savings;
+    var jarsTotal=state.jars.reduce(function(s,j){return s+n(j.amount);},0);
+    var unalloc=spendable-jarsTotal;
+    return {pay:pay,weeklyChunk:weeklyChunk,monthlyBillsTotal:monthlyBillsTotal,weeklySetAside:weeklySetAside,
+      weeklyOutTotal:weeklyOutTotal,allowance:allowance,savings:savings,spendable:spendable,jarsTotal:jarsTotal,unalloc:unalloc};
   }
 
   // ---- rows ----
   function arrFor(kind){ return kind==="monthly"?state.monthlyBills:kind==="weekly"?state.weeklyOutgoings:state.jars; }
   function makeRow(item, kind, color){
-    var el = document.createElement("div"); el.className="item";
+    var el=document.createElement("div"); el.className="item";
     if(color){ var dot=document.createElement("span"); dot.className="dot"; dot.style.background=color; el.appendChild(dot); }
     var name=document.createElement("input"); name.className="name"; name.type="text";
     name.placeholder = kind==="monthly"?"Bill name":kind==="weekly"?"Outgoing name":"Jar name";
-    name.value=item.name;
-    name.addEventListener("input",function(){ item.name=name.value; if(kind==="jar")renderLegend(); save(); });
+    name.value=item.name; name.addEventListener("input",function(){ item.name=name.value; if(kind==="jar")renderLegend(); if(kind==="monthly")recompute(); save(); });
     el.appendChild(name);
+    if(kind==="monthly"){
+      var day=document.createElement("input"); day.className="day"; day.type="number"; day.min="1"; day.max="31"; day.inputMode="numeric"; day.placeholder="–"; day.title="Day of month it's due";
+      day.value=item.day||""; day.addEventListener("input",function(){ item.day=day.value; recompute(); save(); });
+      el.appendChild(day);
+    }
     var sign=document.createElement("span"); sign.className="sign"; sign.setAttribute("data-sign","1"); sign.textContent=CUR[state.currency].symbol; el.appendChild(sign);
     var amt=document.createElement("input"); amt.className="amt"; amt.type="number"; amt.inputMode="decimal"; amt.placeholder="0"; amt.value=item.amount;
     amt.addEventListener("input",function(){ item.amount=amt.value; recompute(); save(); });
     el.appendChild(amt);
     var x=document.createElement("button"); x.className="x"; x.innerHTML="✕"; x.title="Remove";
-    x.addEventListener("click",function(){ var arr=arrFor(kind); var i=arr.indexOf(item); if(i>-1)arr.splice(i,1); el.remove(); recompute(); save(); });
+    x.addEventListener("click",function(){ var a=arrFor(kind); var i=a.indexOf(item); if(i>-1)a.splice(i,1); el.remove(); recompute(); save(); });
     el.appendChild(x);
     return el;
   }
   function renderList(kind){
-    var box = kind==="monthly"?$("monthlyList"):kind==="weekly"?$("weeklyList"):$("jarsList");
+    var box=kind==="monthly"?$("monthlyList"):kind==="weekly"?$("weeklyList"):$("jarsList");
     box.innerHTML="";
     arrFor(kind).forEach(function(it,i){ box.appendChild(makeRow(it,kind, kind==="jar"?JAR_COLORS[i%JAR_COLORS.length]:null)); });
   }
 
-  // ---- donut + legend ----
-  var C = 2*Math.PI*54;
+  // ---- schedule ----
+  function renderSchedule(){
+    var c=calc();
+    $("schedTitle").textContent = MONTH_LONG+", week by week";
+    var setAside=c.weeklySetAside;
+    // group bills into weeks
+    var byWeek=[[],[],[],[]];
+    state.monthlyBills.forEach(function(b){
+      var amt=n(b.amount); if(amt<=0 && !(b.name||"").trim()) return;
+      var d=parseInt(b.day,10); var dated=!isNaN(d)&&d>=1&&d<=31;
+      var wi=dated?weekOfDay(d):3;
+      byWeek[wi].push({name:b.name||"Bill",amount:amt,day:dated?d:null});
+    });
+    var box=$("sched"); box.innerHTML="";
+    var pot=0;
+    for(var w=0; w<4; w++){
+      pot+=setAside;
+      var due=byWeek[w].reduce(function(s,x){return s+x.amount;},0);
+      pot-=due;
+      var div=document.createElement("div"); div.className="wk"+(w===CURRENT_WK?" current":"");
+      var r=WEEK_RANGES[w];
+      var head='<div class="wk-head"><span class="wn">Week '+(w+1)+(w===CURRENT_WK?' • now':'')+'</span><span class="wd">'+r[0]+'–'+r[1]+' '+MONTH_SHORT+'</span></div>';
+      var billsHtml='<div class="wk-bills">';
+      if(byWeek[w].length===0){ billsHtml+='<span class="nobills">No bills due</span>'; }
+      else { byWeek[w].sort(function(a,b){return (a.day||99)-(b.day||99);}).forEach(function(x){
+        billsHtml+='<div class="billline"><span>'+esc(x.name)+(x.day?' <span class="bd">'+ord(x.day)+'</span>':' <span class="bd">(no date)</span>')+'</span><span>'+money(x.amount)+'</span></div>';
+      }); }
+      billsHtml+='</div>';
+      var potCls = pot<-0.005?' pot-neg':'';
+      var foot='<div class="wk-foot">'
+        +'<span class="seg"><span class="k">SET ASIDE</span><span class="vv">'+money(setAside)+'</span></span>'
+        +'<span class="seg" style="text-align:center"><span class="k">DUE</span><span class="vv">'+money(due)+'</span></span>'
+        +'<span class="seg" style="text-align:right"><span class="k">POT AFTER</span><span class="vv'+potCls+'">'+money(pot)+'</span></span>'
+        +'</div>';
+      div.innerHTML=head+billsHtml+foot;
+      box.appendChild(div);
+    }
+    // this-week callout
+    var tw=$("thisweek");
+    if(c.monthlyBillsTotal>0){
+      tw.style.display="block";
+      $("twAmount").textContent=money(setAside);
+      var dueThis=byWeek[CURRENT_WK].reduce(function(s,x){return s+x.amount;},0);
+      $("twDue").textContent = dueThis>0 ? ("Bills landing this week: "+money(dueThis)) : "No bills land this week — the pot is building.";
+    } else { tw.style.display="none"; }
+  }
+
+  // ---- donut ----
+  var C=2*Math.PI*54;
   function getCss(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
   function segments(){
-    var c = calc();
-    var segs=[];
-    if(c.weeklySetAside>0) segs.push({name:"Monthly bills",value:c.weeklySetAside,color:getCss("--bills")});
+    var c=calc(), segs=[];
+    if(c.weeklySetAside>0) segs.push({name:"Bills pot",value:c.weeklySetAside,color:getCss("--bills")});
     if(c.weeklyOutTotal>0) segs.push({name:"Weekly outgoings",value:c.weeklyOutTotal,color:getCss("--outgoings")});
     if(c.savings>0) segs.push({name:"Savings",value:c.savings,color:getCss("--savings")});
     state.jars.forEach(function(j,i){ var a=n(j.amount); if(a>0) segs.push({name:j.name||"Jar",value:a,color:JAR_COLORS[i%JAR_COLORS.length]}); });
     if(c.unalloc>0.005) segs.push({name:"Unallocated",value:c.unalloc,color:getCss("--unalloc")});
-    return {segs:segs, whole:c.weeklyIncome};
+    return {segs:segs, whole:c.weeklyChunk};
   }
   function renderChart(){
-    var d=segments(), c=calc();
-    var card=$("chartCard");
-    if(c.weeklyIncome<=0 && c.weeklySetAside<=0 && c.weeklyOutTotal<=0 || d.segs.length===0){ card.style.display="none"; return; }
-    card.style.display="block";
-    $("centerVal").textContent=money(d.whole);
-    var g=$("donutSegs"); g.innerHTML="";
-    var total=d.segs.reduce(function(s,x){return s+x.value;},0), offset=0;
-    d.segs.forEach(function(seg){
-      var len=(total>0?seg.value/total:0)*C;
-      var el=document.createElementNS("http://www.w3.org/2000/svg","circle");
-      el.setAttribute("cx","80");el.setAttribute("cy","80");el.setAttribute("r","54");
-      el.setAttribute("fill","none");el.setAttribute("stroke",seg.color);el.setAttribute("stroke-width","22");
-      el.setAttribute("stroke-dasharray",(Math.max(len-1.5,0))+" "+(C-Math.max(len-1.5,0)));
-      el.setAttribute("stroke-dashoffset",(-offset));
-      g.appendChild(el); offset+=len;
-    });
+    var d=segments(), c=calc(), card=$("chartCard");
+    if((c.weeklyChunk<=0 && c.weeklySetAside<=0) || d.segs.length===0){ card.style.display="none"; return; }
+    card.style.display="block"; $("centerVal").textContent=money(d.whole);
+    var g=$("donutSegs"); g.innerHTML=""; var total=d.segs.reduce(function(s,x){return s+x.value;},0), off=0;
+    d.segs.forEach(function(seg){ var len=(total>0?seg.value/total:0)*C; var el=document.createElementNS("http://www.w3.org/2000/svg","circle");
+      el.setAttribute("cx","80");el.setAttribute("cy","80");el.setAttribute("r","54");el.setAttribute("fill","none");el.setAttribute("stroke",seg.color);el.setAttribute("stroke-width","22");
+      el.setAttribute("stroke-dasharray",(Math.max(len-1.5,0))+" "+(C-Math.max(len-1.5,0)));el.setAttribute("stroke-dashoffset",(-off));g.appendChild(el); off+=len; });
     renderLegend(d);
   }
-  function renderLegend(d){
-    d=d||segments(); var leg=$("legend"); leg.innerHTML=""; var whole=d.whole;
-    d.segs.forEach(function(seg){
-      var row=document.createElement("div"); row.className="leg";
-      row.innerHTML='<span class="sw" style="background:'+seg.color+'"></span><span class="ln">'+esc(seg.name)+'</span><span class="lv">'+money(seg.value)+'</span><span class="lp">'+(whole>0?Math.round(seg.value/whole*100):0)+'%</span>';
-      leg.appendChild(row);
-    });
-  }
+  function renderLegend(d){ d=d||segments(); var leg=$("legend"); leg.innerHTML=""; var whole=d.whole;
+    d.segs.forEach(function(seg){ var row=document.createElement("div"); row.className="leg";
+      row.innerHTML='<span class="sw" style="background:'+seg.color+'"></span><span class="ln">'+esc(seg.name)+'</span><span class="lv">'+money(seg.value)+'</span><span class="lp">'+(whole>0?Math.round(seg.value/whole*100):0)+'%</span>'; leg.appendChild(row); }); }
   function esc(s){ return (s||"").replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
 
-  // ---- recompute everything ----
   function recompute(){
     var c=calc();
+    $("weeklyChunk").textContent=money(c.weeklyChunk);
     $("monthlyTotal").textContent=money(c.monthlyBillsTotal);
     $("weeklySetAside").textContent=money(c.weeklySetAside);
     $("weeklyOutTotal").textContent=money(c.weeklyOutTotal);
 
-    var over=c.after<0;
+    var over=c.allowance<0;
     $("banner").className="banner"+(over?" over":"");
-    $("afterLbl").textContent=over?"SHORTFALL — COMMITMENTS EXCEED INCOME":"LEFT EACH WEEK AFTER COMMITMENTS";
-    $("afterVal").textContent=money(c.after);
-    $("afterCalc").innerHTML=money(c.weeklyIncome)+" in / wk<br>− "+money(c.weeklySetAside)+" bills pot<br>− "+money(c.weeklyOutTotal)+" weekly";
+    $("afterLbl").textContent=over?"SHORTFALL — COMMITMENTS EXCEED YOUR WEEKLY PAY":"YOUR WEEKLY ALLOWANCE TO SAVE / SPEND";
+    $("afterVal").textContent=money(c.allowance);
+    $("afterCalc").innerHTML=money(c.weeklyChunk)+" / wk<br>− "+money(c.weeklySetAside)+" bills pot<br>− "+money(c.weeklyOutTotal)+" weekly";
 
     $("saveLbl").textContent="SAVE "+state.savePct+"%";
     $("spendLbl").textContent="SPEND "+(100-state.savePct)+"%";
@@ -390,67 +451,32 @@
     $("unallocLbl").textContent=overAlloc?"OVER-ALLOCATED BY":"STILL UNALLOCATED";
     var u=$("unalloc"); u.textContent=money(Math.abs(c.unalloc)); u.style.color=overAlloc?"var(--bills)":"var(--ink)";
 
-    // income equivalent
-    if(state.incomeMode==="monthly"){ $("incomeEquiv").textContent = n(state.income)>0 ? "≈ "+money(c.weeklyIncome)+" per week to work with" : ""; }
-    else { $("incomeEquiv").textContent = n(state.income)>0 ? "≈ "+money(c.monthlyIncome)+" per month" : ""; }
-
-    // two-view summary
-    $("sumIncomeW").textContent=money(c.weeklyIncome); $("sumIncomeM").textContent=money(c.monthlyIncome);
+    $("sumIncomeW").textContent=money(c.weeklyChunk); $("sumIncomeM").textContent=money(c.pay);
     $("sumBillsW").textContent=money(c.weeklySetAside); $("sumBillsM").textContent=money(c.monthlyBillsTotal);
-    $("sumOutW").textContent=money(c.weeklyOutTotal); $("sumOutM").textContent=money(c.weeklyOutTotal*WPM);
-    $("sumSaveW").textContent=money(c.savings); $("sumSaveM").textContent=money(c.savings*WPM);
-    $("sumSpendW").textContent=money(c.spendable); $("sumSpendM").textContent=money(c.spendable*WPM);
+    $("sumOutW").textContent=money(c.weeklyOutTotal); $("sumOutM").textContent=money(c.weeklyOutTotal*WK);
+    $("sumSaveW").textContent=money(c.savings); $("sumSaveM").textContent=money(c.savings*WK);
+    $("sumSpendW").textContent=money(c.spendable); $("sumSpendM").textContent=money(c.spendable*WK);
 
+    renderSchedule();
     renderChart();
   }
+  function refreshSigns(){ var sym=CUR[state.currency].symbol; $("cursign").textContent=sym; Array.prototype.forEach.call(document.querySelectorAll('[data-sign]'),function(el){ el.textContent=sym; }); }
 
-  function refreshSigns(){
-    var sym=CUR[state.currency].symbol;
-    $("cursign").textContent=sym;
-    Array.prototype.forEach.call(document.querySelectorAll('[data-sign]'),function(el){ el.textContent=sym; });
-  }
-
-  function refreshMode(){
-    $("modeMonthly").className = state.incomeMode==="monthly"?"active":"";
-    $("modeWeekly").className = state.incomeMode==="weekly"?"active":"";
-    $("incomeLbl").textContent = state.incomeMode==="monthly"?"YOUR MONTHLY TAKE-HOME PAY":"YOUR WEEKLY INCOME";
-  }
-
-  // ---- wire controls ----
+  // wire
   $("income").value=state.income;
   $("income").addEventListener("input",function(e){ state.income=e.target.value; recompute(); save(); });
   $("savePct").value=state.savePct;
   $("savePct").addEventListener("input",function(e){ state.savePct=parseInt(e.target.value,10); recompute(); save(); });
   $("currency").value=state.currency;
   $("currency").addEventListener("change",function(e){ state.currency=e.target.value; refreshSigns(); recompute(); save(); });
-  $("modeMonthly").addEventListener("click",function(){ state.incomeMode="monthly"; refreshMode(); recompute(); save(); });
-  $("modeWeekly").addEventListener("click",function(){ state.incomeMode="weekly"; refreshMode(); recompute(); save(); });
-
-  $("addMonthly").addEventListener("click",function(){ var b={id:newId(),name:"",amount:""}; state.monthlyBills.push(b); $("monthlyList").appendChild(makeRow(b,"monthly",null)); save(); });
+  $("addMonthly").addEventListener("click",function(){ var b={id:newId(),name:"",amount:"",day:""}; state.monthlyBills.push(b); $("monthlyList").appendChild(makeRow(b,"monthly",null)); recompute(); save(); });
   $("addWeekly").addEventListener("click",function(){ var o={id:newId(),name:"",amount:""}; state.weeklyOutgoings.push(o); $("weeklyList").appendChild(makeRow(o,"weekly",null)); save(); });
   $("addJar").addEventListener("click",function(){ var j={id:newId(),name:"",amount:""}; state.jars.push(j); renderList("jar"); recompute(); save(); });
+  $("split").addEventListener("click",function(){ var c=calc(); var named=state.jars.filter(function(j){return j.name.trim();}); if(named.length===0||c.spendable<=0)return; var per=c.spendable/named.length; state.jars.forEach(function(j){ if(j.name.trim()) j.amount=per.toFixed(2); }); renderList("jar"); recompute(); save(); });
+  $("reset").addEventListener("click",function(){ if(confirm("Clear all entries and start over?")){ var cur=state.currency; state=JSON.parse(JSON.stringify(DEFAULT)); state.currency=cur; $("income").value=""; $("savePct").value=20; $("currency").value=cur; renderList("monthly"); renderList("weekly"); renderList("jar"); refreshSigns(); recompute(); save(); } });
 
-  $("split").addEventListener("click",function(){
-    var c=calc(); var named=state.jars.filter(function(j){return j.name.trim();});
-    if(named.length===0||c.spendable<=0) return;
-    var per=c.spendable/named.length;
-    state.jars.forEach(function(j){ if(j.name.trim()) j.amount=per.toFixed(2); });
-    renderList("jar"); recompute(); save();
-  });
-
-  $("reset").addEventListener("click",function(){
-    if(confirm("Clear all entries and start over?")){
-      var cur=state.currency;
-      state=JSON.parse(JSON.stringify(DEFAULT)); state.currency=cur;
-      $("income").value=""; $("savePct").value=20; $("currency").value=cur;
-      renderList("monthly"); renderList("weekly"); renderList("jar");
-      refreshMode(); refreshSigns(); recompute(); save();
-    }
-  });
-
-  // ---- initial paint ----
-  renderList("monthly"); renderList("weekly"); renderList("jar");
-  refreshMode(); refreshSigns(); recompute();
+  // initial paint
+  renderList("monthly"); renderList("weekly"); renderList("jar"); refreshSigns(); recompute();
 })();
 </script>
 </body>
