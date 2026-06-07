@@ -134,7 +134,7 @@
 <div class="wrap">
   <header>
     <div>
-      <div class="eyebrow">Personal Finance · Paid Monthly</div>
+      <div class="eyebrow">Personal Finance · Paid Monthly<span id="savedFlag" style="opacity:0;transition:opacity .3s;color:var(--savings);font-weight:600;"></span></div>
       <h1>The Weekly Ledger</h1>
     </div>
     <div class="controls">
@@ -142,6 +142,10 @@
       <button class="btn btn-reset" id="reset">↺ Reset</button>
     </div>
   </header>
+
+  <div id="storageWarn" style="display:none;background:#7d2f1e;color:#f0e7d6;border-radius:12px;padding:13px 16px;margin-bottom:18px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.5;">
+    Your browser is blocking saved data, so entries won't stick. This usually means <b>Private Browsing</b> is on, or you're opening a downloaded copy of the file. Open it at the live web address in a normal tab, or add it to your Home Screen, to keep your data.
+  </div>
 
   <!-- 01 Monthly pay -->
   <section class="card">
@@ -273,8 +277,26 @@
   var uid = Date.now();
   function newId(){ return ++uid; }
   function load(){ try{ var r=localStorage.getItem(KEY); if(r) return JSON.parse(r); }catch(e){} return JSON.parse(JSON.stringify(DEFAULT)); }
-  var saveTimer;
-  function save(){ clearTimeout(saveTimer); saveTimer=setTimeout(function(){ try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){} },150); }
+  var storageOK=true;
+  (function testStorage(){ try{ localStorage.setItem("__lgtest","1"); localStorage.removeItem("__lgtest"); }catch(e){ storageOK=false; } })();
+  function save(){
+    try{
+      localStorage.setItem(KEY, JSON.stringify(state));
+      storageOK=true; showSaved();
+    }catch(e){
+      storageOK=false;
+      var w=document.getElementById("storageWarn"); if(w) w.style.display="block";
+    }
+  }
+  function showSaved(){
+    var f=document.getElementById("savedFlag"); if(!f) return;
+    f.textContent=" · Saved"; f.style.opacity="1";
+    clearTimeout(f._t); f._t=setTimeout(function(){ f.style.opacity="0"; },1100);
+  }
+  // belt-and-braces: force a write whenever the app is hidden, backgrounded, or closed
+  window.addEventListener("pagehide", save);
+  window.addEventListener("beforeunload", save);
+  document.addEventListener("visibilitychange", function(){ if(document.visibilityState==="hidden") save(); });
 
   // ---- migrate any older saved data to v4 ----
   if(state._v !== 4){
@@ -490,6 +512,7 @@
 
   // initial paint
   renderList("monthly"); renderList("weekly"); renderList("jar"); refreshSigns(); refreshWeekMode(); recompute();
+  if(!storageOK){ var w=document.getElementById("storageWarn"); if(w) w.style.display="block"; }
 })();
 </script>
 </body>
